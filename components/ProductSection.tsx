@@ -24,16 +24,22 @@ export default function ProductSection({ products }: ProductSectionProps) {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((product, i) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onOpenDetail={setActiveProduct}
-              className={i % 3 === 1 ? "lg:translate-y-10" : ""}
-            />
-          ))}
-        </div>
+        {featured.length === 0 ? (
+          <p className="mt-12 font-body text-ink/50">
+            New pieces are on their way — check back soon.
+          </p>
+        ) : (
+          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((product, i) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onOpenDetail={setActiveProduct}
+                className={i % 3 === 1 ? "lg:translate-y-10" : ""}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <ProductModal product={activeProduct} onClose={() => setActiveProduct(null)} />

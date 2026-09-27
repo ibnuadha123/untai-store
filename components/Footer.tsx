@@ -15,6 +15,7 @@ export default function Footer() {
             <ul className="mt-3 space-y-2 font-body text-sm text-paper/80">
               <li><a href="#shop" className="hover:text-paper">Current run</a></li>
               <li><a href="#collection" className="hover:text-paper">Full collection</a></li>
+              <li><a href="/track" className="hover:text-paper">Track your order</a></li>
             </ul>
           </div>
           <div>

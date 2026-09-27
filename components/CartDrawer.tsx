@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart";
 import { formatIDR } from "@/lib/format";
 
 export default function CartDrawer() {
+  const router = useRouter();
   const {
     items,
     isOpen,
@@ -141,11 +143,13 @@ export default function CartDrawer() {
                   </p>
                   <button
                     type="button"
-                    disabled
-                    title="Checkout is coming in the next build phase"
-                    className="mt-5 w-full cursor-not-allowed rounded-strap bg-ink/15 py-3 font-body text-base font-medium text-ink/40"
+                    onClick={() => {
+                      closeCart();
+                      router.push("/checkout");
+                    }}
+                    className="mt-5 w-full rounded-strap bg-raspberry py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark"
                   >
-                    Checkout — coming soon
+                    Checkout
                   </button>
                 </div>
               </>
