@@ -23,7 +23,7 @@ export default function CheckoutPage() {
     document.title = "Checkout — Untai";
   }, []);
 
-  const estimatedShipping = subtotal >= 150000 ? 0 : 15000;
+  const estimatedShipping = 3000;
   const estimatedTotal = subtotal + estimatedShipping;
 
   async function handleSubmit(e: React.FormEvent) {
@@ -201,9 +201,7 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between text-ink/60">
               <span>Ongkos kirim</span>
-              <span>
-                {estimatedShipping === 0 ? "Gratis" : formatIDR(estimatedShipping)}
-              </span>
+              <span>{formatIDR(estimatedShipping)}</span>
             </div>
             <div className="flex justify-between pt-2 text-base font-medium text-ink">
               <span>Total</span>

@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 
 const links = [
-  { href: "#shop", label: "Belanja" },
-  { href: "#collection", label: "Koleksi" },
-  { href: "#about", label: "Tentang" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#shop", label: "Belanja" },
+  { href: "/#collection", label: "Koleksi" },
+  { href: "/produk", label: "Semua produk" },
+  { href: "/#about", label: "Tentang" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {

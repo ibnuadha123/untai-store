@@ -4,8 +4,8 @@ const items = [
     detail: "Checkout dengan QRIS atau DANA, tanpa perlu kartu.",
   },
   {
-    title: "Gratis ongkir di atas Rp150.000",
-    detail: "Ke seluruh Indonesia melalui kurir pilihan kami.",
+    title: "Berbagai tema yang bisa dipilih",
+    detail: "Pilih tema yang paling kamu sukai untuk membuat strap yang unik.",
   },
   {
     title: "Dirangkai satu per satu",

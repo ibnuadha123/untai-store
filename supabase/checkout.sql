@@ -60,7 +60,7 @@ begin
     v_subtotal := v_subtotal + (v_product.price * v_quantity);
   end loop;
 
-  v_shipping := case when v_subtotal >= 150000 then 0 else 15000 end;
+  v_shipping := 3000;
   v_total := v_subtotal + v_shipping;
 
   -- Insert the order, retrying the order number on the rare collision.

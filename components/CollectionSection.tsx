@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Product } from "@/types/product";
 import { formatIDR } from "@/lib/format";
@@ -26,6 +27,9 @@ const spanPattern = [
 export default function CollectionSection({ products }: CollectionSectionProps) {
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
   const active = products.filter((p) => p.isActive);
+  // Beranda hanya menampilkan beberapa produk pertama sebagai cuplikan.
+  // Daftar lengkapnya ada di halaman /produk.
+  const preview = active.slice(0, spanPattern.length);
 
   return (
     <section id="collection" className="bg-ink px-6 py-20">
@@ -35,13 +39,13 @@ export default function CollectionSection({ products }: CollectionSectionProps) 
             Semua strap di Untai
           </h2>
           <p className="mt-3 font-body text-paper/65">
-            Seluruh koleksi kami,
-            termasuk yang sudah habis terjual.
+            Cuplikan koleksi kami. Buka halaman semua produk untuk melihat
+            seluruh strap yang tersedia.
           </p>
         </div>
 
         <div className="mt-12 grid auto-rows-[160px] grid-cols-1 gap-4 sm:grid-cols-6">
-          {active.map((product, i) => (
+          {preview.map((product, i) => (
             <button
               key={product.id}
               type="button"
@@ -65,6 +69,16 @@ export default function CollectionSection({ products }: CollectionSectionProps) 
               </div>
             </button>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/produk"
+            className="rounded-strap bg-raspberry px-8 py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark"
+          >
+            Lihat semua produk
+            {active.length > 0 ? ` (${active.length})` : ""}
+          </Link>
         </div>
       </div>
 
