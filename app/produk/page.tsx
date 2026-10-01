@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartSync from "@/components/CartSync";
@@ -24,12 +25,12 @@ export default async function AllProductsPage() {
       <Navbar />
       <main className="px-6 pb-24 pt-14">
         <div className="mx-auto max-w-6xl">
-          <a
+          <Link
             href="/#collection"
             className="font-body text-sm text-ink/60 transition-colors hover:text-raspberry"
           >
             ← Kembali ke beranda
-          </a>
+          </Link>
           <h1 className="mt-6 font-display text-5xl text-ink">Semua produk</h1>
           <p className="mt-3 max-w-prose font-body text-ink/70">
             Seluruh strap yang tersedia di Untai saat ini, termasuk yang sedang
