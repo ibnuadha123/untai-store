@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    return NextResponse.json({ error: "Permintaan tidak valid" }, { status: 400 });
   }
 
   const { customerName, customerPhone, customerAddress, paymentMethod, items } = body;
@@ -31,26 +31,26 @@ export async function POST(req: NextRequest) {
   // validates, but failing fast here gives clearer error messages and
   // avoids a round trip for obviously malformed requests.
   if (!customerName?.trim() || customerName.trim().length > 100) {
-    return NextResponse.json({ error: "Please enter your name" }, { status: 400 });
+    return NextResponse.json({ error: "Masukkan namamu" }, { status: 400 });
   }
   if (!customerPhone?.trim() || customerPhone.trim().length > 20) {
-    return NextResponse.json({ error: "Please enter a valid phone number" }, { status: 400 });
+    return NextResponse.json({ error: "Masukkan nomor telepon yang valid" }, { status: 400 });
   }
   if (!customerAddress?.trim() || customerAddress.trim().length > 500) {
-    return NextResponse.json({ error: "Please enter your address" }, { status: 400 });
+    return NextResponse.json({ error: "Masukkan alamat pengirimanmu" }, { status: 400 });
   }
   if (paymentMethod !== "QRIS" && paymentMethod !== "DANA") {
-    return NextResponse.json({ error: "Please choose a payment method" }, { status: 400 });
+    return NextResponse.json({ error: "Pilih metode pembayaran" }, { status: 400 });
   }
   if (!Array.isArray(items) || items.length === 0) {
-    return NextResponse.json({ error: "Your cart is empty" }, { status: 400 });
+    return NextResponse.json({ error: "Keranjangmu kosong" }, { status: 400 });
   }
   for (const item of items) {
     if (!UUID_RE.test(item.productId)) {
-      return NextResponse.json({ error: "Invalid item in cart" }, { status: 400 });
+      return NextResponse.json({ error: "Ada item tidak valid di keranjang" }, { status: 400 });
     }
     if (!Number.isInteger(item.quantity) || item.quantity <= 0 || item.quantity > 99) {
-      return NextResponse.json({ error: "Invalid quantity in cart" }, { status: 400 });
+      return NextResponse.json({ error: "Jumlah di keranjang tidak valid" }, { status: 400 });
     }
   }
 

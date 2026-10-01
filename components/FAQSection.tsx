@@ -1,28 +1,38 @@
+import { contactInfo } from "@/lib/contact";
+
 const faqs = [
   {
-    question: "How do I pay?",
+    question: "Bagaimana cara membayar?",
     answer:
-      "At checkout you'll get a QRIS code or our DANA number along with the exact total and your order number. Pay from any e-wallet or mobile banking app that supports QRIS, then upload a screenshot of the payment as proof.",
+      "Saat checkout, kamu akan mendapat kode QRIS atau nomor DANA beserta total yang harus dibayar dan nomor pesananmu. Bayar lewat e-wallet atau aplikasi mobile banking yang mendukung QRIS, lalu unggah tangkapan layar pembayaran sebagai bukti.",
   },
   {
-    question: "Why isn't my order marked as paid right away?",
+    question: "Kenapa pesananku belum langsung berstatus lunas?",
     answer:
-      "We check every payment against our merchant account by hand before marking an order PAID. This usually takes a few hours during the day. Uploading proof doesn't confirm payment on its own — it just gives us something to check against.",
+      "Setiap pembayaran kami cek manual dengan akun merchant sebelum pesanan ditandai lunas. Biasanya butuh beberapa jam pada jam kerja. Mengunggah bukti pembayaran belum otomatis mengonfirmasi pembayaran, tapi membantu kami mencocokkannya.",
   },
   {
-    question: "Will a strap fit my phone case?",
+    question: "Apakah strap bisa dipasang di casing ponselku?",
     answer:
-      "Yes, as long as your case has a strap hole or lug — most silicone and clear cases sold in the last few years do. If your case doesn't have one, we sell a small adhesive lug separately.",
+      "Bisa, selama casingmu punya lubang atau pengait tali. Kalau tidak yakin, hubungi kami lewat WhatsApp sebelum memesan.",
   },
   {
-    question: "How long does a strap last?",
-    answer:
-      "With daily use, expect 6–12 months from a beaded or woven strap and longer from leather, which just ages instead of wearing out. Cords can be restrung — message us on WhatsApp and we'll quote a repair.",
-  },
-  {
-    question: "Do you restock sold-out colorways?",
-    answer:
-      "Rarely in the exact same colors, since beads are sourced in small, inconsistent lots. We post new runs on our Instagram before they go up on the site.",
+    question: "Apakah warna yang sudah habis akan dibuat lagi?",
+    answer: (
+      <>
+        Jarang persis sama, karena manik-manik kami kumpulkan dalam jumlah
+        kecil dan tidak selalu seragam. Koleksi baru akan kami umumkan di{" "}
+        <a
+          href={contactInfo.instagram.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-raspberry underline underline-offset-2 hover:text-raspberry-dark"
+        >
+          Instagram
+        </a>{" "}
+        sebelum tampil di situs ini.
+      </>
+    ),
   },
 ];
 
@@ -30,7 +40,7 @@ export default function FAQSection() {
   return (
     <section id="faq" className="px-6 py-20">
       <div className="mx-auto max-w-3xl">
-        <h2 className="font-display text-4xl text-ink">Questions</h2>
+        <h2 className="font-display text-4xl text-ink">Pertanyaan umum</h2>
 
         <div className="mt-10 divide-y divide-ink/10 border-t border-ink/10">
           {faqs.map((faq) => (

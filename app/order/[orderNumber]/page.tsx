@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getOrderByNumber } from "@/lib/orders";
 import { formatIDR } from "@/lib/format";
 import { paymentInfo } from "@/lib/payment-info";
+import { label, paymentStatusLabel } from "@/lib/labels";
+import { buildWhatsAppUrl } from "@/lib/contact";
 import PaymentProofUpload from "@/components/PaymentProofUpload";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ orderNumber: string }>;
 }): Promise<Metadata> {
   const { orderNumber } = await params;
-  return { title: `Order ${orderNumber} — Untai` };
+  return { title: `Pesanan ${orderNumber} — Untai` };
 }
 
 export default async function OrderPage({
@@ -29,15 +31,15 @@ export default async function OrderPage({
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
-      <p className="font-body text-sm text-forest">Order placed</p>
+      <p className="font-body text-sm text-forest">Pesanan dibuat</p>
       <h1 className="mt-1 font-display text-4xl text-ink">
         {order.orderNumber}
       </h1>
       <p className="mt-3 font-body text-ink/60">
-        Thanks, {order.customerName.split(" ")[0]} — we&apos;ve got your
-        order. Save this page&apos;s link, or come back later at{" "}
-        <span className="font-medium text-ink">/track</span> with your order
-        number and phone number.
+        Terima kasih, {order.customerName.split(" ")[0]}. Pesananmu sudah kami
+        terima. Simpan tautan halaman ini, atau kembali nanti lewat{" "}
+        <span className="font-medium text-ink">/track</span> dengan nomor
+        pesanan dan nomor teleponmu.
       </p>
 
       <div className="mt-8 rounded-strap border border-ink/10 p-6">
@@ -59,10 +61,10 @@ export default async function OrderPage({
             <span>{formatIDR(order.subtotal)}</span>
           </div>
           <div className="flex justify-between text-ink/60">
-            <span>Shipping</span>
+            <span>Ongkos kirim</span>
             <span>
               {order.shippingCost === 0
-                ? "Free"
+                ? "Gratis"
                 : formatIDR(order.shippingCost)}
             </span>
           </div>
@@ -75,33 +77,37 @@ export default async function OrderPage({
 
       <div className="mt-6 rounded-strap bg-cloud p-6">
         <p className="font-display text-lg text-ink">
-          Pay via {order.paymentMethod}
+          Bayar lewat {order.paymentMethod}
         </p>
 
         {order.paymentStatus !== "PENDING" ? (
           <p className="mt-2 font-body text-sm text-ink/60">
-            This order is marked{" "}
-            <span className="font-medium text-ink">{order.paymentStatus}</span>.
+            Pesanan ini berstatus{" "}
+            <span className="font-medium text-ink">
+              {label(paymentStatusLabel, order.paymentStatus)}
+            </span>
+            .
           </p>
         ) : order.paymentMethod === "QRIS" ? (
           <div className="mt-4">
             {paymentInfo.qris.isPlaceholder && (
               <p className="mb-3 rounded-lg bg-gold/20 px-3 py-2 font-body text-xs text-ink/70">
-                Sample QR shown — the store owner needs to add a real QRIS
-                code in lib/payment-info.ts before this goes live.
+                Ini hanya contoh QR. Pemilik toko perlu menambahkan kode QRIS
+                asli di lib/payment-info.ts sebelum situs ini dibuka untuk
+                umum.
               </p>
             )}
             <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-2xl bg-paper">
               <Image
                 src={paymentInfo.qris.imagePath}
-                alt="QRIS payment code"
+                alt="Kode pembayaran QRIS"
                 fill
                 className="object-contain p-3"
               />
             </div>
             <p className="mt-4 text-center font-body text-sm text-ink/70">
-              Scan with any e-wallet or mobile banking app that supports
-              QRIS, and enter this exact amount:
+              Pindai dengan e-wallet atau aplikasi mobile banking yang
+              mendukung QRIS, lalu masukkan nominal yang tepat ini:
             </p>
             <p className="text-center font-display text-2xl text-ink">
               {formatIDR(order.total)}
@@ -109,7 +115,7 @@ export default async function OrderPage({
           </div>
         ) : (
           <div className="mt-4">
-            <p className="font-body text-sm text-ink/60">Send to DANA number</p>
+            <p className="font-body text-sm text-ink/60">Kirim ke nomor DANA</p>
             <p className="font-display text-2xl text-ink">
               {paymentInfo.dana.number}
             </p>
@@ -117,14 +123,14 @@ export default async function OrderPage({
               a/n {paymentInfo.dana.accountName}
             </p>
             <p className="mt-4 font-body text-sm text-ink/70">
-              Transfer this exact amount, and include your order number in
-              the transfer note:
+              Transfer sesuai nominal berikut, dan cantumkan nomor pesananmu di
+              catatan transfer:
             </p>
             <p className="font-display text-2xl text-ink">
               {formatIDR(order.total)}
             </p>
             <p className="mt-1 font-body text-sm text-ink/60">
-              Note: {order.orderNumber}
+              Catatan: {order.orderNumber}
             </p>
           </div>
         )}
@@ -136,6 +142,22 @@ export default async function OrderPage({
           />
         )}
       </div>
+
+      {order.paymentStatus === "PENDING" && (
+        <p className="mt-4 text-center font-body text-sm text-ink/50">
+          Sudah transfer dan ingin pesanan segera dicek?{" "}
+          <a
+            href={buildWhatsAppUrl(
+              `Halo Untai, saya sudah transfer untuk pesanan ${order.orderNumber}.`
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-raspberry underline underline-offset-2 hover:text-raspberry-dark"
+          >
+            Konfirmasi lewat WhatsApp
+          </a>
+        </p>
+      )}
     </main>
   );
 }

@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getAllOrders } from "@/lib/admin-orders";
 import { formatIDR } from "@/lib/format";
+import { label, orderStatusLabel, paymentStatusLabel } from "@/lib/labels";
 
-export const metadata: Metadata = { title: "Orders — Untai Admin" };
+export const metadata: Metadata = { title: "Pesanan — Admin Untai" };
 export const dynamic = "force-dynamic";
 
 const paymentBadgeClass: Record<string, string> = {
@@ -18,28 +19,28 @@ export default async function AdminOrdersPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl text-ink">Orders</h1>
+        <h1 className="font-display text-3xl text-ink">Pesanan</h1>
         <Link
           href="/admin"
           className="font-body text-sm text-ink/60 hover:text-raspberry"
         >
-          ← Dashboard
+          ← Dasbor
         </Link>
       </div>
 
       {orders.length === 0 ? (
-        <p className="mt-8 font-body text-ink/60">No orders yet.</p>
+        <p className="mt-8 font-body text-ink/60">Belum ada pesanan.</p>
       ) : (
         <div className="mt-8 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
               <tr className="border-b border-ink/10 font-body text-sm text-ink/50">
-                <th className="py-3 pr-4 font-normal">Order</th>
-                <th className="py-3 pr-4 font-normal">Customer</th>
+                <th className="py-3 pr-4 font-normal">Pesanan</th>
+                <th className="py-3 pr-4 font-normal">Pelanggan</th>
                 <th className="py-3 pr-4 font-normal">Total</th>
-                <th className="py-3 pr-4 font-normal">Payment</th>
+                <th className="py-3 pr-4 font-normal">Pembayaran</th>
                 <th className="py-3 pr-4 font-normal">Status</th>
-                <th className="py-3 pr-4 font-normal">Date</th>
+                <th className="py-3 pr-4 font-normal">Tanggal</th>
               </tr>
             </thead>
             <tbody className="font-body text-sm text-ink">
@@ -59,10 +60,10 @@ export default async function AdminOrdersPage() {
                     <span
                       className={`rounded-full px-2.5 py-1 text-xs ${paymentBadgeClass[o.paymentStatus]}`}
                     >
-                      {o.paymentStatus}
+                      {label(paymentStatusLabel, o.paymentStatus)}
                     </span>
                   </td>
-                  <td className="py-3 pr-4 text-ink/70">{o.orderStatus}</td>
+                  <td className="py-3 pr-4 text-ink/70">{label(orderStatusLabel, o.orderStatus)}</td>
                   <td className="py-3 pr-4 text-ink/50">
                     {new Date(o.createdAt).toLocaleDateString("id-ID")}
                   </td>

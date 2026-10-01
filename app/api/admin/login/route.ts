@@ -8,13 +8,13 @@ export async function POST(req: NextRequest) {
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) {
     return NextResponse.json(
-      { error: "Admin login isn't configured yet" },
+      { error: "Login admin belum dikonfigurasi" },
       { status: 500 }
     );
   }
 
   if (password !== adminPassword) {
-    return NextResponse.json({ error: "Incorrect password" }, { status: 401 });
+    return NextResponse.json({ error: "Kata sandi salah" }, { status: 401 });
   }
 
   const token = await createSessionToken();

@@ -1,25 +1,25 @@
 <svg viewBox="0 0 520 640" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="phoneGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2C2330"/>
-      <stop offset="100%" stop-color="#1A1419"/>
+      <stop offset="0%" stop-color="#302535"/>
+      <stop offset="100%" stop-color="#1C161F"/>
     </linearGradient>
   </defs>
   <!-- strap cord -->
-  <path d="M 250 40 C 150 120, 150 220, 250 260 C 350 300, 360 330, 300 360" fill="none" stroke="#C6355F" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 250 40 C 150 120, 150 220, 250 260 C 350 300, 360 330, 300 360" fill="none" stroke="#A45B92" stroke-width="10" stroke-linecap="round"/>
   <!-- beads along the cord -->
-  <circle cx="235" cy="70" r="13" fill="#E8AE3D"/>
-  <circle cx="185" cy="120" r="16" fill="#3C5A48"/>
-  <circle cx="168" cy="180" r="11" fill="#E8AE3D"/>
-  <circle cx="205" cy="230" r="14" fill="#C6355F"/>
-  <circle cx="270" cy="270" r="10" fill="#3C5A48"/>
-  <circle cx="310" cy="320" r="13" fill="#E8AE3D"/>
+  <circle cx="235" cy="70" r="13" fill="#A6A1D9"/>
+  <circle cx="185" cy="120" r="16" fill="#5B4066"/>
+  <circle cx="168" cy="180" r="11" fill="#A6A1D9"/>
+  <circle cx="205" cy="230" r="14" fill="#A45B92"/>
+  <circle cx="270" cy="270" r="10" fill="#5B4066"/>
+  <circle cx="310" cy="320" r="13" fill="#A6A1D9"/>
   <!-- phone body, slightly rotated -->
   <g transform="translate(150,330) rotate(-6)">
     <rect x="0" y="0" width="220" height="440" rx="34" fill="url(#phoneGrad)"/>
-    <rect x="14" y="30" width="192" height="380" rx="18" fill="#F5F1F0" opacity="0.06"/>
-    <circle cx="196" cy="18" r="4" fill="#F5F1F0" opacity="0.5"/>
+    <rect x="14" y="30" width="192" height="380" rx="18" fill="#D9CFDD" opacity="0.06"/>
+    <circle cx="196" cy="18" r="4" fill="#D9CFDD" opacity="0.5"/>
     <!-- strap lug -->
-    <rect x="184" y="-6" width="20" height="20" rx="4" fill="#1A1419"/>
+    <rect x="184" y="-6" width="20" height="20" rx="4" fill="#1C161F"/>
   </g>
 </svg>

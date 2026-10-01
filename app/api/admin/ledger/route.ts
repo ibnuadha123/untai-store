@@ -6,13 +6,13 @@ export async function POST(req: NextRequest) {
   const { type, amount, description } = body;
 
   if (type !== "IN" && type !== "OUT") {
-    return NextResponse.json({ error: "Invalid entry type" }, { status: 400 });
+    return NextResponse.json({ error: "Jenis catatan tidak valid" }, { status: 400 });
   }
   if (!Number.isInteger(amount) || amount <= 0) {
-    return NextResponse.json({ error: "Enter a valid amount" }, { status: 400 });
+    return NextResponse.json({ error: "Masukkan nominal yang valid" }, { status: 400 });
   }
   if (typeof description !== "string" || !description.trim()) {
-    return NextResponse.json({ error: "Enter a description" }, { status: 400 });
+    return NextResponse.json({ error: "Masukkan keterangan" }, { status: 400 });
   }
 
   const { error } = await addManualLedgerEntry({
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   });
 
   if (error) {
-    return NextResponse.json({ error: "Failed to save entry" }, { status: 500 });
+    return NextResponse.json({ error: "Gagal menyimpan catatan" }, { status: 500 });
   }
 
   return NextResponse.json({ success: true }, { status: 201 });

@@ -31,7 +31,7 @@ export default function CheckoutPage() {
     setError(null);
 
     if (items.length === 0) {
-      setError("Your cart is empty.");
+      setError("Keranjangmu kosong.");
       return;
     }
 
@@ -55,7 +55,7 @@ export default function CheckoutPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
+        setError(data.error ?? "Terjadi kesalahan. Silakan coba lagi.");
         setIsSubmitting(false);
         return;
       }
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
       clearCart();
       router.push(`/order/${data.order_number}`);
     } catch {
-      setError("Couldn't reach the server. Check your connection and try again.");
+      setError("Tidak bisa terhubung ke server. Periksa koneksimu lalu coba lagi.");
       setIsSubmitting(false);
     }
   }
@@ -71,15 +71,15 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <main className="mx-auto max-w-xl px-6 py-24 text-center">
-        <h1 className="font-display text-3xl text-ink">Your cart is empty</h1>
+        <h1 className="font-display text-3xl text-ink">Keranjangmu kosong</h1>
         <p className="mt-3 font-body text-ink/60">
-          Add a strap from the shop before checking out.
+          Tambahkan strap dari toko sebelum checkout.
         </p>
         <Link
           href="/#shop"
           className="mt-6 inline-block rounded-strap bg-raspberry px-6 py-3 font-body text-sm font-medium text-paper hover:bg-raspberry-dark"
         >
-          Back to shop
+          Kembali ke toko
         </Link>
       </main>
     );
@@ -93,7 +93,7 @@ export default function CheckoutPage() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
             <label htmlFor="name" className="font-body text-sm text-ink/70">
-              Full name
+              Nama lengkap
             </label>
             <input
               id="name"
@@ -108,7 +108,7 @@ export default function CheckoutPage() {
 
           <div>
             <label htmlFor="phone" className="font-body text-sm text-ink/70">
-              Phone number (WhatsApp preferred)
+              Nomor telepon (sebaiknya yang aktif WhatsApp)
             </label>
             <input
               id="phone"
@@ -124,7 +124,7 @@ export default function CheckoutPage() {
 
           <div>
             <label htmlFor="address" className="font-body text-sm text-ink/70">
-              Shipping address
+              Alamat pengiriman
             </label>
             <textarea
               id="address"
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
 
           <fieldset>
             <legend className="font-body text-sm text-ink/70">
-              Payment method
+              Metode pembayaran
             </legend>
             <div className="mt-2 flex gap-3">
               {(["QRIS", "DANA"] as const).map((method) => (
@@ -176,12 +176,12 @@ export default function CheckoutPage() {
             disabled={isSubmitting}
             className="mt-2 w-full rounded-strap bg-raspberry py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "Placing order…" : "Place order"}
+            {isSubmitting ? "Memproses pesanan…" : "Buat pesanan"}
           </button>
         </form>
 
         <div className="h-fit rounded-strap border border-ink/10 p-6">
-          <h2 className="font-display text-xl text-ink">Order summary</h2>
+          <h2 className="font-display text-xl text-ink">Ringkasan pesanan</h2>
           <ul className="mt-4 divide-y divide-ink/10">
             {items.map((item) => (
               <li key={item.productId} className="flex justify-between py-3">
@@ -200,9 +200,9 @@ export default function CheckoutPage() {
               <span>{formatIDR(subtotal)}</span>
             </div>
             <div className="flex justify-between text-ink/60">
-              <span>Shipping</span>
+              <span>Ongkos kirim</span>
               <span>
-                {estimatedShipping === 0 ? "Free" : formatIDR(estimatedShipping)}
+                {estimatedShipping === 0 ? "Gratis" : formatIDR(estimatedShipping)}
               </span>
             </div>
             <div className="flex justify-between pt-2 text-base font-medium text-ink">
@@ -211,7 +211,7 @@ export default function CheckoutPage() {
             </div>
           </div>
           <p className="mt-4 font-body text-xs text-ink/45">
-            Final total is confirmed by the server when you place your order.
+            Total akhir dikonfirmasi server saat kamu membuat pesanan.
           </p>
         </div>
       </div>

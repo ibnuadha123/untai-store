@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
     // API routes get a 401, not a redirect — a fetch() call shouldn't be
     // silently redirected to an HTML login page.
     if (req.nextUrl.pathname.startsWith("/api/admin")) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+      return NextResponse.json({ error: "Belum masuk" }, { status: 401 });
     }
     const loginUrl = new URL("/admin/login", req.url);
     return NextResponse.redirect(loginUrl);

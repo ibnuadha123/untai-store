@@ -17,22 +17,22 @@ export async function POST(
 
   if (typeof phone !== "string" || !phone.trim()) {
     return NextResponse.json(
-      { error: "Enter the phone number used at checkout" },
+      { error: "Masukkan nomor telepon yang dipakai saat checkout" },
       { status: 400 }
     );
   }
   if (!(file instanceof File)) {
-    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    return NextResponse.json({ error: "File belum dipilih" }, { status: 400 });
   }
   if (!ALLOWED_TYPES.includes(file.type)) {
     return NextResponse.json(
-      { error: "Please upload a JPG, PNG, or WEBP image" },
+      { error: "Unggah gambar JPG, PNG, atau WEBP" },
       { status: 400 }
     );
   }
   if (file.size > MAX_SIZE_BYTES) {
     return NextResponse.json(
-      { error: "File is too large (max 5 MB)" },
+      { error: "Ukuran file terlalu besar (maks. 5 MB)" },
       { status: 400 }
     );
   }
@@ -47,17 +47,17 @@ export async function POST(
     .maybeSingle();
 
   if (orderError || !order) {
-    return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    return NextResponse.json({ error: "Pesanan tidak ditemukan" }, { status: 404 });
   }
   if (!phonesMatch(order.customer_phone, phone)) {
     return NextResponse.json(
-      { error: "That phone number doesn't match this order" },
+      { error: "Nomor telepon tidak cocok dengan pesanan ini" },
       { status: 403 }
     );
   }
   if (order.payment_status !== "PENDING") {
     return NextResponse.json(
-      { error: "This order is no longer awaiting payment" },
+      { error: "Pesanan ini sudah tidak menunggu pembayaran" },
       { status: 400 }
     );
   }
@@ -75,7 +75,7 @@ export async function POST(
 
   if (uploadError) {
     return NextResponse.json(
-      { error: "Upload failed, please try again" },
+      { error: "Unggahan gagal, silakan coba lagi" },
       { status: 500 }
     );
   }
@@ -87,7 +87,7 @@ export async function POST(
 
   if (updateError) {
     return NextResponse.json(
-      { error: "Saved the file but failed to attach it to your order" },
+      { error: "File tersimpan tetapi gagal dikaitkan ke pesananmu" },
       { status: 500 }
     );
   }

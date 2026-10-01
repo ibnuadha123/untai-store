@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart";
 import CartDrawer from "@/components/CartDrawer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "Untai — Phone Straps for Everyday Carry",
+  title: "Untai — Strap Ponsel untuk Dibawa Setiap Hari",
   description:
-    "Hand-strung beaded, woven, and leather phone straps made in small batches. Pay with QRIS or DANA.",
+    "Strap ponsel dari untaian benang dan manik-manik, dirangkai satu per satu. Bayar dengan QRIS atau DANA.",
   openGraph: {
-    title: "Untai — Phone Straps for Everyday Carry",
+    title: "Untai — Strap Ponsel untuk Dibawa Setiap Hari",
     description:
-      "Hand-strung beaded, woven, and leather phone straps made in small batches.",
+      "Strap ponsel dari untaian benang dan manik-manik, dirangkai satu per satu.",
     type: "website",
     locale: "id_ID",
   },
@@ -22,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -39,6 +40,7 @@ export default function RootLayout({
         <CartProvider>
           {children}
           <CartDrawer />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>

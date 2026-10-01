@@ -8,21 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#221B22",
-        cloud: "#ECE7E9",
+        ink: "#241D28",
+        cloud: "#D2C2D8",
         raspberry: {
-          DEFAULT: "#C6355F",
-          dark: "#A32A4C",
+          DEFAULT: "#A45B92",
+          dark: "#8B4A7A",
         },
         gold: {
-          DEFAULT: "#E8AE3D",
-          dark: "#C9932A",
+          DEFAULT: "#A6A1D9",
+          dark: "#8B85C7",
         },
         forest: {
-          DEFAULT: "#3C5A48",
-          light: "#4F7460",
+          DEFAULT: "#5B4066",
+          light: "#7A5D82",
         },
-        paper: "#F5F1F0",
+        paper: "#D9CFDD",
       },
       fontFamily: {
         display: ["Fraunces", "serif"],

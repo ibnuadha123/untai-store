@@ -17,16 +17,16 @@ export default function ProductSection({ products }: ProductSectionProps) {
     <section id="shop" className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-prose">
-          <h2 className="font-display text-4xl text-ink">The current run</h2>
+          <h2 className="font-display text-4xl text-ink">Koleksi terbaru</h2>
           <p className="mt-3 font-body text-ink/70">
-            Small batches, made in limited numbers. Once a strap sells out,
-            it may not come back in the same colorway.
+            Dibuat dalam jumlah terbatas. Kalau satu strap habis,
+            warnanya belum tentu kembali.
           </p>
         </div>
 
         {featured.length === 0 ? (
           <p className="mt-12 font-body text-ink/50">
-            New pieces are on their way — check back soon.
+            Produk baru segera hadir. Cek lagi nanti.
           </p>
         ) : (
           <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">

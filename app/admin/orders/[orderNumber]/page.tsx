@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getOrderDetailForAdmin } from "@/lib/admin-orders";
 import { formatIDR } from "@/lib/format";
+import { label, orderStatusLabel, paymentStatusLabel } from "@/lib/labels";
 import OrderStatusEditor from "@/components/admin/OrderStatusEditor";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ orderNumber: string }>;
 }): Promise<Metadata> {
   const { orderNumber } = await params;
-  return { title: `${orderNumber} — Untai Admin` };
+  return { title: `${orderNumber} — Admin Untai` };
 }
 
 export default async function AdminOrderDetailPage({
@@ -33,7 +34,7 @@ export default async function AdminOrderDetailPage({
         href="/admin/orders"
         className="font-body text-sm text-ink/60 hover:text-raspberry"
       >
-        ← All orders
+        ← Semua pesanan
       </Link>
       <h1 className="mt-2 font-display text-3xl text-ink">
         {order.orderNumber}
@@ -44,7 +45,7 @@ export default async function AdminOrderDetailPage({
 
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         <div>
-          <h2 className="font-display text-lg text-ink">Customer</h2>
+          <h2 className="font-display text-lg text-ink">Pelanggan</h2>
           <p className="mt-2 font-body text-sm text-ink/70">
             {order.customerName}
           </p>
@@ -56,21 +57,21 @@ export default async function AdminOrderDetailPage({
           </p>
         </div>
         <div>
-          <h2 className="font-display text-lg text-ink">Payment</h2>
+          <h2 className="font-display text-lg text-ink">Pembayaran</h2>
           <p className="mt-2 font-body text-sm text-ink/70">
-            Method: {order.paymentMethod}
+            Metode: {order.paymentMethod}
           </p>
           <p className="font-body text-sm text-ink/70">
-            Payment status: {order.paymentStatus}
+            Status pembayaran: {label(paymentStatusLabel, order.paymentStatus)}
           </p>
           <p className="font-body text-sm text-ink/70">
-            Order status: {order.orderStatus}
+            Status pesanan: {label(orderStatusLabel, order.orderStatus)}
           </p>
         </div>
       </div>
 
       <div className="mt-8 rounded-strap border border-ink/10 p-6">
-        <h2 className="font-display text-lg text-ink">Items</h2>
+        <h2 className="font-display text-lg text-ink">Item</h2>
         <ul className="mt-3 divide-y divide-ink/10">
           {order.items.map((item, i) => (
             <li key={i} className="flex justify-between py-3 font-body text-sm">
@@ -89,10 +90,10 @@ export default async function AdminOrderDetailPage({
             <span>{formatIDR(order.subtotal)}</span>
           </div>
           <div className="flex justify-between text-ink/60">
-            <span>Shipping</span>
+            <span>Ongkos kirim</span>
             <span>
               {order.shippingCost === 0
-                ? "Free"
+                ? "Gratis"
                 : formatIDR(order.shippingCost)}
             </span>
           </div>
@@ -105,7 +106,7 @@ export default async function AdminOrderDetailPage({
 
       {order.paymentProofUrl ? (
         <div className="mt-8">
-          <h2 className="font-display text-lg text-ink">Payment proof</h2>
+          <h2 className="font-display text-lg text-ink">Bukti pembayaran</h2>
           <a
             href={order.paymentProofUrl}
             target="_blank"
@@ -115,7 +116,7 @@ export default async function AdminOrderDetailPage({
             <div className="relative h-64 w-64 overflow-hidden rounded-strap border border-ink/10 bg-cloud">
               <Image
                 src={order.paymentProofUrl}
-                alt="Payment proof screenshot"
+                alt="Tangkapan layar bukti pembayaran"
                 fill
                 className="object-contain"
                 unoptimized
@@ -123,13 +124,13 @@ export default async function AdminOrderDetailPage({
             </div>
           </a>
           <p className="mt-1 font-body text-xs text-ink/45">
-            Click to open full size. This link expires after 1 hour — reload
-            the page for a fresh one.
+            Klik untuk membuka ukuran penuh. Tautan ini kedaluwarsa setelah 1 jam. Muat ulang
+            halaman untuk mendapatkan tautan baru.
           </p>
         </div>
       ) : (
         <p className="mt-8 font-body text-sm text-ink/50">
-          No payment proof uploaded yet.
+          Bukti pembayaran belum diunggah.
         </p>
       )}
 

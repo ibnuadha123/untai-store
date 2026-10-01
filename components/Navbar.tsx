@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 
 const links = [
-  { href: "#shop", label: "Shop" },
-  { href: "#collection", label: "Collection" },
-  { href: "#about", label: "About" },
+  { href: "#shop", label: "Belanja" },
+  { href: "#collection", label: "Koleksi" },
+  { href: "#about", label: "Tentang" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -38,7 +38,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
+            aria-label={`Buka keranjang, ${itemCount} item`}
             className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-raspberry hover:text-raspberry"
           >
             <svg
@@ -71,7 +71,7 @@ export default function Navbar() {
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink md:hidden"
             aria-expanded={mobileOpen}
-            aria-label="Toggle menu"
+            aria-label="Buka atau tutup menu"
             onClick={() => setMobileOpen((v) => !v)}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">

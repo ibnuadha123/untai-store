@@ -10,7 +10,7 @@ export default function AdminLoginPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    document.title = "Admin login — Untai";
+    document.title = "Masuk admin — Untai";
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong");
+        setError(data.error ?? "Terjadi kesalahan");
         setIsSubmitting(false);
         return;
       }
@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
       router.push("/admin");
       router.refresh();
     } catch {
-      setError("Couldn't reach the server. Check your connection and try again.");
+      setError("Tidak bisa terhubung ke server. Periksa koneksimu lalu coba lagi.");
       setIsSubmitting(false);
     }
   }
@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
             type="password"
             required
             autoFocus
-            placeholder="Password"
+            placeholder="Kata sandi"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border border-paper/15 bg-paper/5 px-4 py-3 font-body text-paper outline-none placeholder:text-paper/40 focus:border-raspberry"
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
             disabled={isSubmitting}
             className="w-full rounded-strap bg-raspberry py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "Checking…" : "Enter"}
+            {isSubmitting ? "Memeriksa…" : "Masuk"}
           </button>
         </form>
       </div>

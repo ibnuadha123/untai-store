@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Product } from "@/types/product";
 import { formatIDR } from "@/lib/format";
 import { useCart } from "@/lib/cart";
+import { categoryLabel, label } from "@/lib/labels";
 
 interface ProductModalProps {
   product: Product | null;
@@ -53,7 +54,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="relative aspect-square w-full overflow-hidden rounded-strap bg-cloud">
               <Image
                 src={product.imageUrl}
-                alt={`${product.name}, a ${product.category.toLowerCase()} phone strap`}
+                alt={`${product.name}, strap ponsel ${label(categoryLabel, product.category).toLowerCase()}`}
                 fill
                 className="object-cover"
               />
@@ -62,7 +63,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="flex flex-col">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-body text-xs text-forest">{product.category}</p>
+                  <p className="font-body text-xs text-forest">{label(categoryLabel, product.category)}</p>
                   <h2
                     id="product-modal-title"
                     className="mt-1 font-display text-3xl text-ink"
@@ -73,7 +74,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 <button
                   type="button"
                   onClick={onClose}
-                  aria-label="Close product details"
+                  aria-label="Tutup detail produk"
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-raspberry hover:text-raspberry"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -96,10 +97,10 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
               <p className="mt-4 font-body text-sm text-ink/60">
                 {product.stock === 0
-                  ? "Currently sold out."
+                  ? "Stok sedang habis."
                   : product.stock <= 5
-                  ? `Only ${product.stock} left.`
-                  : "In stock."}
+                  ? `Tersisa ${product.stock}.`
+                  : "Stok tersedia."}
               </p>
 
               <button
@@ -111,7 +112,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 }}
                 className="mt-6 w-full rounded-strap bg-raspberry py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark disabled:cursor-not-allowed disabled:bg-ink/15 disabled:text-ink/40"
               >
-                {product.stock === 0 ? "Sold out" : "Add to cart"}
+                {product.stock === 0 ? "Habis" : "Tambah ke keranjang"}
               </button>
             </div>
           </motion.div>

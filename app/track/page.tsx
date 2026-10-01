@@ -11,7 +11,7 @@ export default function TrackOrderPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    document.title = "Track your order — Untai";
+    document.title = "Lacak pesanan — Untai";
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -28,29 +28,29 @@ export default function TrackOrderPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
+        setError(data.error ?? "Terjadi kesalahan. Silakan coba lagi.");
         setIsSubmitting(false);
         return;
       }
 
       router.push(`/order/${data.orderNumber}`);
     } catch {
-      setError("Couldn't reach the server. Check your connection and try again.");
+      setError("Tidak bisa terhubung ke server. Periksa koneksimu lalu coba lagi.");
       setIsSubmitting(false);
     }
   }
 
   return (
     <main className="mx-auto max-w-md px-6 py-24">
-      <h1 className="font-display text-4xl text-ink">Track your order</h1>
+      <h1 className="font-display text-4xl text-ink">Lacak pesananmu</h1>
       <p className="mt-3 font-body text-ink/60">
-        Enter your order number and the phone number you checked out with.
+        Masukkan nomor pesanan dan nomor telepon yang kamu pakai saat checkout.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
         <div>
           <label htmlFor="orderNumber" className="font-body text-sm text-ink/70">
-            Order number
+            Nomor pesanan
           </label>
           <input
             id="orderNumber"
@@ -65,7 +65,7 @@ export default function TrackOrderPage() {
 
         <div>
           <label htmlFor="phone" className="font-body text-sm text-ink/70">
-            Phone number
+            Nomor telepon
           </label>
           <input
             id="phone"
@@ -89,7 +89,7 @@ export default function TrackOrderPage() {
           disabled={isSubmitting}
           className="mt-2 w-full rounded-strap bg-raspberry py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting ? "Looking up…" : "Find my order"}
+          {isSubmitting ? "Mencari…" : "Cari pesananku"}
         </button>
       </form>
     </main>

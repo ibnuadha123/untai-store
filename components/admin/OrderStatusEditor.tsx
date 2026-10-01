@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { label, orderStatusLabel, paymentStatusLabel } from "@/lib/labels";
 
 const PAYMENT_STATUSES = ["PENDING", "PAID", "FAILED"] as const;
 const ORDER_STATUSES = [
@@ -44,14 +45,14 @@ export default function OrderStatusEditor({
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Failed to save");
+        setError(data.error ?? "Gagal menyimpan");
         return;
       }
 
       setSaved(true);
       router.refresh();
     } catch {
-      setError("Couldn't reach the server");
+      setError("Tidak bisa terhubung ke server");
     } finally {
       setIsSaving(false);
     }
@@ -59,11 +60,11 @@ export default function OrderStatusEditor({
 
   return (
     <div className="rounded-strap border border-ink/10 p-5">
-      <p className="font-display text-lg text-ink">Update status</p>
+      <p className="font-display text-lg text-ink">Perbarui status</p>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <label className="block">
-          <span className="font-body text-sm text-ink/60">Payment status</span>
+          <span className="font-body text-sm text-ink/60">Status pembayaran</span>
           <select
             value={payment}
             onChange={(e) => setPayment(e.target.value)}
@@ -71,14 +72,14 @@ export default function OrderStatusEditor({
           >
             {PAYMENT_STATUSES.map((s) => (
               <option key={s} value={s}>
-                {s}
+                {label(paymentStatusLabel, s)}
               </option>
             ))}
           </select>
         </label>
 
         <label className="block">
-          <span className="font-body text-sm text-ink/60">Order status</span>
+          <span className="font-body text-sm text-ink/60">Status pesanan</span>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
@@ -86,7 +87,7 @@ export default function OrderStatusEditor({
           >
             {ORDER_STATUSES.map((s) => (
               <option key={s} value={s}>
-                {s}
+                {label(orderStatusLabel, s)}
               </option>
             ))}
           </select>
@@ -97,7 +98,7 @@ export default function OrderStatusEditor({
         <p className="mt-3 font-body text-sm text-raspberry">{error}</p>
       )}
       {saved && !error && (
-        <p className="mt-3 font-body text-sm text-forest">Saved.</p>
+        <p className="mt-3 font-body text-sm text-forest">Tersimpan.</p>
       )}
 
       <button
@@ -106,7 +107,7 @@ export default function OrderStatusEditor({
         disabled={isSaving}
         className="mt-4 rounded-strap bg-raspberry px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-raspberry-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSaving ? "Saving…" : "Save changes"}
+        {isSaving ? "Menyimpan…" : "Simpan perubahan"}
       </button>
     </div>
   );

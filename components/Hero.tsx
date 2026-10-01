@@ -13,28 +13,28 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="font-body text-sm text-forest">
-            Small-batch phone straps, strung and woven by hand
+            Strap ponsel dari untaian benang dan manik-manik
           </p>
           <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink md:text-6xl">
-            A strand for the thing you never put down.
+            Seuntai keindahan untuk gawai yang selalu kamu bawa.
           </h1>
           <p className="mt-6 max-w-prose font-body text-lg leading-relaxed text-ink/70">
-            Untai makes beaded, woven, and leather straps that turn your phone
-            into something worth carrying by hand instead of losing in a bag.
-            Each piece is finished individually, so no two are quite alike.
+            Untai merangkai strap ponsel dari benang dan manik-manik dengan
+            beragam karakter. Setiap strap dirangkai satu per satu, jadi tidak
+            ada dua yang benar-benar sama.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#shop"
               className="rounded-strap bg-raspberry px-7 py-3 font-body text-base font-medium text-paper transition-colors hover:bg-raspberry-dark"
             >
-              Shop the collection
+              Lihat koleksi
             </a>
             <a
               href="#about"
               className="font-body text-base text-ink/70 underline decoration-ink/30 underline-offset-4 transition-colors hover:text-ink"
             >
-              How they&apos;re made
+              Tentang Untai
             </a>
           </div>
         </motion.div>
@@ -48,7 +48,7 @@ export default function Hero() {
           <div className="relative aspect-[13/16] w-full">
             <Image
               src="/images/hero-strap.svg"
-              alt="A phone with a beaded Untai strap looped through the corner, dangling in sunset-colored beads"
+              alt="Ponsel dengan strap Untai dari untaian manik-manik yang menjuntai"
               fill
               priority
               className="object-contain"

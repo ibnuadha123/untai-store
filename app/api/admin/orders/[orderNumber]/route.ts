@@ -16,20 +16,20 @@ export async function PATCH(
 
   if (body.paymentStatus !== undefined) {
     if (!PAYMENT_STATUSES.includes(body.paymentStatus)) {
-      return NextResponse.json({ error: "Invalid payment status" }, { status: 400 });
+      return NextResponse.json({ error: "Status pembayaran tidak valid" }, { status: 400 });
     }
     updates.payment_status = body.paymentStatus;
   }
 
   if (body.orderStatus !== undefined) {
     if (!ORDER_STATUSES.includes(body.orderStatus)) {
-      return NextResponse.json({ error: "Invalid order status" }, { status: 400 });
+      return NextResponse.json({ error: "Status pesanan tidak valid" }, { status: 400 });
     }
     updates.order_status = body.orderStatus;
   }
 
   if (Object.keys(updates).length === 0) {
-    return NextResponse.json({ error: "Nothing to update" }, { status: 400 });
+    return NextResponse.json({ error: "Tidak ada yang diperbarui" }, { status: 400 });
   }
 
   // Fetch the order's current state first so we can detect a payment
@@ -41,7 +41,7 @@ export async function PATCH(
     .maybeSingle();
 
   if (fetchError || !existingOrder) {
-    return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    return NextResponse.json({ error: "Pesanan tidak ditemukan" }, { status: 404 });
   }
 
   const newPaymentStatus = updates.payment_status;
@@ -77,7 +77,7 @@ export async function PATCH(
     .eq("order_number", orderNumber);
 
   if (error) {
-    return NextResponse.json({ error: "Failed to update order" }, { status: 500 });
+    return NextResponse.json({ error: "Gagal memperbarui pesanan" }, { status: 500 });
   }
 
   if (newPaymentStatus && newPaymentStatus !== oldPaymentStatus) {

@@ -34,7 +34,7 @@ export default function CartDrawer() {
           <motion.aside
             role="dialog"
             aria-modal="true"
-            aria-label="Shopping cart"
+            aria-label="Keranjang belanja"
             className="thin-scroll fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col overflow-y-auto bg-paper"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -42,11 +42,11 @@ export default function CartDrawer() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center justify-between border-b border-ink/10 px-6 py-5">
-              <h2 className="font-display text-2xl text-ink">Your cart</h2>
+              <h2 className="font-display text-2xl text-ink">Keranjang</h2>
               <button
                 type="button"
                 onClick={closeCart}
-                aria-label="Close cart"
+                aria-label="Tutup keranjang"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-raspberry hover:text-raspberry"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -62,16 +62,16 @@ export default function CartDrawer() {
 
             {items.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-                <p className="font-display text-xl text-ink">Your cart is empty</p>
+                <p className="font-display text-xl text-ink">Keranjangmu kosong</p>
                 <p className="mt-2 font-body text-sm text-ink/60">
-                  Add a strap from the shop to see it here.
+                  Tambahkan strap dari toko untuk melihatnya di sini.
                 </p>
                 <button
                   type="button"
                   onClick={closeCart}
                   className="mt-6 rounded-strap bg-raspberry px-6 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-raspberry-dark"
                 >
-                  Continue browsing
+                  Lanjut belanja
                 </button>
               </div>
             ) : (
@@ -95,10 +95,10 @@ export default function CartDrawer() {
                           <button
                             type="button"
                             onClick={() => removeFromCart(item.productId)}
-                            aria-label={`Remove ${item.name} from cart`}
+                            aria-label={`Hapus ${item.name} dari keranjang`}
                             className="font-body text-xs text-ink/40 underline underline-offset-2 hover:text-raspberry"
                           >
-                            Remove
+                            Hapus
                           </button>
                         </div>
                         <div className="flex items-center justify-between">
@@ -106,7 +106,7 @@ export default function CartDrawer() {
                             <button
                               type="button"
                               onClick={() => decreaseQuantity(item.productId)}
-                              aria-label={`Decrease quantity of ${item.name}`}
+                              aria-label={`Kurangi jumlah ${item.name}`}
                               className="flex h-5 w-5 items-center justify-center text-ink/70 hover:text-raspberry"
                             >
                               −
@@ -118,7 +118,7 @@ export default function CartDrawer() {
                               type="button"
                               onClick={() => increaseQuantity(item.productId)}
                               disabled={item.quantity >= item.stock}
-                              aria-label={`Increase quantity of ${item.name}`}
+                              aria-label={`Tambah jumlah ${item.name}`}
                               className="flex h-5 w-5 items-center justify-center text-ink/70 hover:text-raspberry disabled:text-ink/25"
                             >
                               +
@@ -139,7 +139,7 @@ export default function CartDrawer() {
                     <span className="text-lg">{formatIDR(subtotal)}</span>
                   </div>
                   <p className="mt-1 font-body text-xs text-ink/45">
-                    Shipping is calculated at checkout.
+                    Ongkos kirim dihitung saat checkout.
                   </p>
                   <button
                     type="button"

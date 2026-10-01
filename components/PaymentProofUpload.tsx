@@ -23,7 +23,7 @@ export default function PaymentProofUpload({
   async function handleUpload() {
     if (!selectedFile) return;
     if (!phone.trim()) {
-      setError("Enter the phone number you used at checkout");
+      setError("Masukkan nomor telepon yang kamu pakai saat checkout");
       return;
     }
     setIsUploading(true);
@@ -41,7 +41,7 @@ export default function PaymentProofUpload({
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Upload failed, please try again");
+        setError(data.error ?? "Unggahan gagal, silakan coba lagi");
         setIsUploading(false);
         return;
       }
@@ -49,7 +49,7 @@ export default function PaymentProofUpload({
       setDone(true);
       router.refresh();
     } catch {
-      setError("Couldn't reach the server. Check your connection and try again.");
+      setError("Tidak bisa terhubung ke server. Periksa koneksimu lalu coba lagi.");
       setIsUploading(false);
     }
   }
@@ -57,8 +57,8 @@ export default function PaymentProofUpload({
   if (done) {
     return (
       <div className="mt-6 rounded-lg bg-forest/10 px-4 py-3 font-body text-sm text-forest">
-        Payment proof uploaded. We&apos;ll check it against what we&apos;ve
-        received and update your order soon.
+        Bukti pembayaran sudah diunggah. Kami akan mencocokkannya dengan
+        pembayaran yang masuk dan segera memperbarui pesananmu.
       </div>
     );
   }
@@ -66,12 +66,12 @@ export default function PaymentProofUpload({
   return (
     <div className="mt-6 border-t border-ink/10 pt-6">
       <p className="font-body text-sm text-ink/70">
-        Already paid? Upload a screenshot as proof.
+        Sudah bayar? Unggah tangkapan layar sebagai bukti.
       </p>
 
       <input
         type="tel"
-        placeholder="Phone number used at checkout"
+        placeholder="Nomor telepon yang dipakai saat checkout"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         className="mt-3 w-full rounded-lg border border-ink/15 bg-paper px-3 py-2 font-body text-sm text-ink outline-none focus:border-raspberry"
@@ -91,7 +91,7 @@ export default function PaymentProofUpload({
           disabled={!selectedFile || isUploading}
           className="shrink-0 rounded-strap bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-ink/85 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isUploading ? "Uploading…" : "Upload"}
+          {isUploading ? "Mengunggah…" : "Unggah"}
         </button>
       </div>
 
@@ -100,7 +100,7 @@ export default function PaymentProofUpload({
       )}
 
       <p className="mt-2 font-body text-xs text-ink/45">
-        JPG, PNG, or WEBP, up to 5 MB.
+        JPG, PNG, atau WEBP, maksimal 5 MB.
       </p>
     </div>
   );

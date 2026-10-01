@@ -25,8 +25,8 @@ html {
 }
 
 body {
-  background-color: #F5F1F0;
-  color: #221B22;
+  background-color: #D9CFDD;
+  color: #241D28;
 }
 
 /* Visible keyboard focus for every interactive element */
@@ -36,7 +36,7 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #C6355F;
+  outline: 2px solid #A45B92;
   outline-offset: 3px;
   border-radius: 2px;
 }

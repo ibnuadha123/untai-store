@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({ error: "Permintaan tidak valid" }, { status: 400 });
   }
 
   const orderNumber = body.orderNumber?.trim().toUpperCase();
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
   if (!orderNumber || !phone) {
     return NextResponse.json(
-      { error: "Enter both your order number and phone number" },
+      { error: "Masukkan nomor pesanan dan nomor teleponmu" },
       { status: 400 }
     );
   }
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   if (!matches) {
     return NextResponse.json(
-      { error: "No order found with that order number and phone number" },
+      { error: "Pesanan dengan nomor pesanan dan nomor telepon tersebut tidak ditemukan" },
       { status: 404 }
     );
   }

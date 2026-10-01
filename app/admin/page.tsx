@@ -22,35 +22,41 @@ export default async function AdminHomePage() {
 
       <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <div className="rounded-strap border border-ink/10 p-5">
-          <p className="font-body text-xs text-ink/50">Balance</p>
+          <p className="font-body text-xs text-ink/50">Saldo</p>
           <p className="mt-1 font-display text-2xl text-ink">{formatIDR(balance)}</p>
         </div>
         <div className="rounded-strap border border-ink/10 p-5">
-          <p className="font-body text-xs text-ink/50">Total orders</p>
+          <p className="font-body text-xs text-ink/50">Total pesanan</p>
           <p className="mt-1 font-display text-2xl text-ink">{orders.length}</p>
         </div>
         <div className="rounded-strap border border-ink/10 p-5">
-          <p className="font-body text-xs text-ink/50">Awaiting payment</p>
+          <p className="font-body text-xs text-ink/50">Menunggu pembayaran</p>
           <p className="mt-1 font-display text-2xl text-ink">{pendingCount}</p>
         </div>
         <div className="rounded-strap border border-ink/10 p-5">
-          <p className="font-body text-xs text-ink/50">Paid</p>
+          <p className="font-body text-xs text-ink/50">Lunas</p>
           <p className="mt-1 font-display text-2xl text-ink">{paidCount}</p>
         </div>
       </div>
 
       <nav className="mt-10 flex flex-col gap-3">
         <Link
+          href="/admin/products"
+          className="rounded-strap border border-ink/15 px-5 py-4 font-body text-ink transition-colors hover:border-raspberry hover:text-raspberry"
+        >
+          Produk →
+        </Link>
+        <Link
           href="/admin/orders"
           className="rounded-strap border border-ink/15 px-5 py-4 font-body text-ink transition-colors hover:border-raspberry hover:text-raspberry"
         >
-          Orders →
+          Pesanan →
         </Link>
         <Link
           href="/admin/ledger"
           className="rounded-strap border border-ink/15 px-5 py-4 font-body text-ink transition-colors hover:border-raspberry hover:text-raspberry"
         >
-          Ledger →
+          Buku kas →
         </Link>
       </nav>
     </main>

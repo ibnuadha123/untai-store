@@ -17,7 +17,7 @@ export default function AddLedgerEntryForm() {
 
     const parsedAmount = Number(amount);
     if (!Number.isInteger(parsedAmount) || parsedAmount <= 0) {
-      setError("Enter a valid whole-number amount");
+      setError("Masukkan nominal bilangan bulat yang valid");
       return;
     }
 
@@ -31,7 +31,7 @@ export default function AddLedgerEntryForm() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Failed to save entry");
+        setError(data.error ?? "Gagal menyimpan catatan");
         return;
       }
 
@@ -39,7 +39,7 @@ export default function AddLedgerEntryForm() {
       setDescription("");
       router.refresh();
     } catch {
-      setError("Couldn't reach the server");
+      setError("Tidak bisa terhubung ke server");
     } finally {
       setIsSaving(false);
     }
@@ -50,10 +50,10 @@ export default function AddLedgerEntryForm() {
       onSubmit={handleSubmit}
       className="rounded-strap border border-ink/10 p-5"
     >
-      <p className="font-display text-lg text-ink">Add manual entry</p>
+      <p className="font-display text-lg text-ink">Tambah catatan manual</p>
       <p className="mt-1 font-body text-xs text-ink/50">
-        For expenses like restocking or shipping paid out of pocket. Income
-        from paid orders is added automatically.
+        Untuk pengeluaran seperti restock atau ongkir yang kamu bayar sendiri. Pemasukan
+        dari pesanan lunas ditambahkan otomatis.
       </p>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-[auto_1fr_1fr]">
@@ -71,7 +71,7 @@ export default function AddLedgerEntryForm() {
                   : "border border-ink/15 text-ink/60"
               }`}
             >
-              {t === "OUT" ? "Expense" : "Income"}
+              {t === "OUT" ? "Pengeluaran" : "Pemasukan"}
             </button>
           ))}
         </div>
@@ -81,7 +81,7 @@ export default function AddLedgerEntryForm() {
           min={1}
           step={1}
           required
-          placeholder="Amount (Rp)"
+          placeholder="Nominal (Rp)"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           className="rounded-lg border border-ink/15 bg-paper px-3 py-2 font-body text-ink outline-none focus:border-raspberry"
@@ -91,7 +91,7 @@ export default function AddLedgerEntryForm() {
           type="text"
           required
           maxLength={200}
-          placeholder="Description"
+          placeholder="Keterangan"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="rounded-lg border border-ink/15 bg-paper px-3 py-2 font-body text-ink outline-none focus:border-raspberry"
@@ -107,7 +107,7 @@ export default function AddLedgerEntryForm() {
         disabled={isSaving}
         className="mt-4 rounded-strap bg-ink px-5 py-2.5 font-body text-sm font-medium text-paper transition-colors hover:bg-ink/85 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSaving ? "Saving…" : "Add entry"}
+        {isSaving ? "Menyimpan…" : "Tambah catatan"}
       </button>
     </form>
   );

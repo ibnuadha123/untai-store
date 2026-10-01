@@ -1,15 +1,15 @@
 const items = [
   {
-    title: "Pay your way",
-    detail: "Checkout with QRIS or DANA — no card required.",
+    title: "Bayar dengan cara yang kamu suka",
+    detail: "Checkout dengan QRIS atau DANA, tanpa perlu kartu.",
   },
   {
-    title: "Free shipping over Rp150.000",
-    detail: "Anywhere in Indonesia via our usual courier partners.",
+    title: "Gratis ongkir di atas Rp150.000",
+    detail: "Ke seluruh Indonesia melalui kurir pilihan kami.",
   },
   {
-    title: "Small batches",
-    detail: "Most colorways are made in runs of 12–20 pieces.",
+    title: "Dirangkai satu per satu",
+    detail: "Setiap strap dibuat dengan tangan, jadi punyamu unik.",
   },
 ];
 
